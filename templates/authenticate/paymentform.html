@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{concert.name}} at {{concert.venue.name}}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+      .card {
+        margin-top: 10px;
+      }
+      .user {
+        margin-right: 20px;
+        text-align: left;
+      }
+      ul {
+        list-style-type: none;
+        padding-left: 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/ticket">Ticketing Application</a>
+        <div class="d-flex justify-content-start">
+          <button class="btn btn-primary user">
+            {{user.first_name}} {{user.last_name}}
+          </button>
+          <button
+            class="btn btn-primary"
+            type="button"
+            onclick="window.location.href='/';"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h1 class="card-title">{{concert.name}}</h1>
+              <p class="card-text">at {{concert.venue.name}}</p>
+              <p class="card-text">Date: {{concert.date}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <h2 class="card-title">Available tickets</h2>
+              <br />
+              {% if not can_buy %}
+              <p>Error: make sure selected tickets are available</p>
+              {% endif %}
+              <form action="payment_post" method="POST">
+                {% csrf_token %}
+                <ul>
+                  {% for seat in seats %}
+                  <div class="card">
+                    <li>
+                      <label for="{{seat.id}}"
+                        >{{seat.name}}:&nbsp;&nbsp;&nbsp; {{seat.occupancy}} /
+                        {{seat.capacity}}&nbsp;&nbsp;&nbsp;Price:
+                        ${{seat.price}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Amount:&nbsp;&nbsp;&nbsp;
+                      </label>
+                      <input
+                        type="number"
+                        name="{{seat.name}}"
+                        id="{{seat.id}}"
+                        min="0"
+                        max="10"
+                        value="0"
+                      />
+                    </li>
+                  </div>
+                  {% endfor %}
+                </ul>
+                <button class="btn btn-primary" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+      integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <style>
+      .cbtn {
+        width: 100%;
+        height: 60px;
+        margin-top: 20px;
+      }
+      .buttons {
+        margin-top: 120px;
+      }
+      h1 {
+        margin-top: 10px;
+        padding: 20px;
+      }
+      label,
+      input {
+        margin-bottom: 10px;
+      }
+      .card-title {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 20px;
+      }
+    </style>
+    <title>Sign up</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <h1 class="navbar-brand">Ticketing Application</h1>
+        <div class="d-flex justify-content-start">
+          <button
+            class="btn btn-primary"
+            type="button"
+            onclick="window.location.href='/';"
+          >
+            Back
+          </button>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div
+          class="col-12 d-flex justify-content-center align-items-center buttons"
+        >
+          <div class="card" style="width: 18rem">
+            <div class="card-body">
+              <h5 class="card-title">Sign up</h5>
+              <form action="/signup" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="fname">First name:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="fname"
+                    aria-describedby="first name"
+                    placeholder="Enter first name"
+                    name="fname"
+                  />
+                  <label for="lname">Last name:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="lname"
+                    aria-describedby="last name"
+                    placeholder="Enter last name"
+                    name="lname"
+                  />
+
+                  <label for="urname">Username:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="urname"
+                    aria-describedby="user name"
+                    placeholder="Enter username"
+                    name="urname"
+                  />
+
+                  <label for="email">Email:</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    aria-describedby="email"
+                    placeholder="Enter email"
+                    name="email"
+                  />
+
+                  <label for="p1">Password:</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="p1"
+                    aria-describedby="password"
+                    placeholder="Enter password"
+                    name="p1"
+                  />
+                  <label for="p2">Confirm Password:</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="p2"
+                    aria-describedby="password confirm"
+                    placeholder="Enter password"
+                    name="p2"
+                  />
+                  <button class="btn btn-primary cbtn" type="submit">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+        integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+        crossorigin="anonymous"
+      ></script>
+    </div>
+  </body>
+</html>
